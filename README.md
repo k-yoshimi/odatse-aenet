@@ -79,14 +79,17 @@ tests/                       # Unit tests (52 tests)
 
 ## Documentation
 
-Full documentation is available in Japanese and English:
+Full documentation is available online:
+
+- [**English**](https://k-yoshimi.github.io/odatse-aenet/en/)
+- [**日本語**](https://k-yoshimi.github.io/odatse-aenet/ja/)
+
+To build locally:
 
 ```bash
 cd docs
 sh make.sh       # Build both ja/en HTML docs
 ```
-
-The built documentation will be in `docs/ja/build/html/` and `docs/en/build/html/`.
 
 ## Developers
 

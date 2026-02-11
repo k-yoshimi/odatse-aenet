@@ -1,0 +1,90 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install sphinx sphinx-rtd-theme
+
+      - name: Build documentation
+        run: |
+          python -m sphinx -b html docs/ja/source docs/_build/ja
+          python -m sphinx -b html docs/en/source docs/_build/en
+
+      - name: Create index page
+        run: |
+          cat > docs/_build/index.html << 'HTMLEOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset="utf-8">
+            <title>odatse-aenet Documentation</title>
+            <style>
+              body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                max-width: 600px;
+                margin: 80px auto;
+                padding: 0 20px;
+                color: #333;
+              }
+              h1 { border-bottom: 2px solid #2980b9; padding-bottom: 10px; }
+              a {
+                display: inline-block;
+                margin: 10px 10px 10px 0;
+                padding: 12px 24px;
+                background: #2980b9;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 16px;
+              }
+              a:hover { background: #1a5276; }
+            </style>
+          </head>
+          <body>
+            <h1>odatse-aenet Documentation</h1>
+            <p>AENET solver module for ODAT-SE</p>
+            <a href="en/">English</a>
+            <a href="ja/">日本語</a>
+          </body>
+          </html>
+          HTMLEOF
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/_build
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
