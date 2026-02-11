@@ -241,7 +241,7 @@ Installing odatse-aenet
 
 .. code-block:: bash
 
-   git clone <repository-url>
+   git clone https://github.com/k-yoshimi/odatse-aenet.git
    cd odatse-aenet
    pip3 install .
 

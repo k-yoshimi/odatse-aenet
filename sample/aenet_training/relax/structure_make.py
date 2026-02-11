@@ -40,6 +40,8 @@ def generate_structures(
 
     for i, distance in enumerate(distances):
         dir_name = f"{output_prefix}_{i}"
+        if os.path.exists(dir_name):
+            shutil.rmtree(dir_name)
         shutil.copytree(pseudo_dir, dir_name)
 
         with open(template_file, "r") as f:

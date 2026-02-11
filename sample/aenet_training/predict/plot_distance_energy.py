@@ -176,7 +176,7 @@ if __name__ == "__main__":
         description="Plot N-N distance vs total energy (QE vs ANN)")
     parser.add_argument("--predict-out", default="predict.out",
                         help="Path to AENET predict.out")
-    parser.add_argument("--train-out", default="train.out",
+    parser.add_argument("--train-out", default="../train/train.out",
                         help="Path to AENET train.out (for test set indices)")
     parser.add_argument("--qe-dir", default="../relax",
                         help="Base directory for QE training data")
@@ -211,9 +211,20 @@ if __name__ == "__main__":
                 distances_test.append(distances_qe[idx])
                 energies_test.append(energies_qe[idx])
 
+    # Full range plot
     plot_comparison(
         distances_ann, energies_ann,
         distances_qe, energies_qe,
         distances_test, energies_test,
         output_file=args.output,
+    )
+
+    # Zoomed-in plot around the potential minimum
+    base, ext = os.path.splitext(args.output)
+    plot_comparison(
+        distances_ann, energies_ann,
+        distances_qe, energies_qe,
+        distances_test, energies_test,
+        output_file=f"{base}_zoom{ext}",
+        ylim=(-770, -760),
     )

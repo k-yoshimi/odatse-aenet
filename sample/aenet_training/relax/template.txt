@@ -1,5 +1,6 @@
 &CONTROL
- calculation='relax',
+ calculation='scf',
+ tprnfor=.true.,
  pseudo_dir = './',
  outdir = './output'
 /
@@ -17,10 +18,6 @@
  conv_thr =  1.0d-8,
  mixing_beta = 0.7
 /
-&IONS
-/
-&CELL
-/
 
 ATOMIC_SPECIES
 N 14.007 N.pbe-n-kjpaw_psl.1.0.0.UPF
@@ -33,5 +30,5 @@ CELL_PARAMETERS angstrom
 0.0 0.0 10.0
 
 ATOMIC_POSITIONS angstrom
-N 0.0 0.0 0.0 0 0 0
-N 0.0 0.0 value_01 0 0 0
+N 0.0 0.0 0.0
+N 0.0 0.0 value_01

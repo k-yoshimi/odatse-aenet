@@ -1,0 +1,31 @@
+#関係ない
+DESCR
+  Structural fingerprint setup for N-N in linear nitrogen molecule
+  Reference: Literature reference (e.g., author, year)
+END DESCR
+
+ATOM N
+
+ENV  1
+N 
+
+#原子間距離が近すぎる構造は捨てる
+RMIN 0.5
+
+#「Behler2011 basis」
+SYMMFUNC type=Behler2011
+9
+G=2 type2=N   eta=0.001  Rs=0.0  Rc=3.0
+G=2 type2=N   eta=0.01  Rs=0.0  Rc=3.0
+G=2 type2=N   eta=0.1  Rs=0.0  Rc=3.0
+G=4 type2=N  type3=N   eta=0.001 lambda=-1.0  zeta=4.0 Rc=3.0
+G=4 type2=N  type3=N   eta=0.001 lambda=1.0   zeta=4.0 Rc=3.0
+G=4 type2=N  type3=N   eta=0.01 lambda=-1.0  zeta=4.0 Rc=3.0
+G=4 type2=N  type3=N   eta=0.01 lambda=1.0   zeta=4.0 Rc=3.0
+G=4 type2=N  type3=N   eta=0.1 lambda=-1.0  zeta=4.0 Rc=3.0
+G=4 type2=N  type3=N   eta=0.1 lambda=1.0   zeta=4.0 Rc=3.0
+
+#eta:対称関数の幅。etaが小さいと急な関数。大きいと緩やかな関数。大きいほど、より遠い原子間の相互作用も考慮される
+#Rs：対称関数のシフトを制御するパラメータ。基本0
+#zeta：角度に依存する対称関数の重み付けを調整するパラメータ。1より大きいと、特定の角度の寄与が増加。
+#Rc：カットオフ距離。3.0Å以内の原子間相互作用のみ寄与する。
