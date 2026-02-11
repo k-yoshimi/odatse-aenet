@@ -1,0 +1,12 @@
+TYPES
+1
+N
+
+NETWORKS
+  N N.5t-5t.ann
+
+FORCES
+
+FILES
+1
+structure_data.xsf

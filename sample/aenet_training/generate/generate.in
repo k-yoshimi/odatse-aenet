@@ -1,0 +1,31 @@
+OUTPUT N2.train
+
+TYPES
+1
+N 389.83
+
+SETUPS
+N N.fingerprint.stp
+
+FILES
+20
+../relax/directory_0/teach_data/teach_data_1.xsf
+../relax/directory_1/teach_data/teach_data_1.xsf
+../relax/directory_2/teach_data/teach_data_1.xsf
+../relax/directory_3/teach_data/teach_data_1.xsf
+../relax/directory_4/teach_data/teach_data_1.xsf
+../relax/directory_5/teach_data/teach_data_1.xsf
+../relax/directory_6/teach_data/teach_data_1.xsf
+../relax/directory_7/teach_data/teach_data_1.xsf
+../relax/directory_8/teach_data/teach_data_1.xsf
+../relax/directory_9/teach_data/teach_data_1.xsf
+../relax/directory_10/teach_data/teach_data_1.xsf
+../relax/directory_11/teach_data/teach_data_1.xsf
+../relax/directory_12/teach_data/teach_data_1.xsf
+../relax/directory_13/teach_data/teach_data_1.xsf
+../relax/directory_14/teach_data/teach_data_1.xsf
+../relax/directory_15/teach_data/teach_data_1.xsf
+../relax/directory_16/teach_data/teach_data_1.xsf
+../relax/directory_17/teach_data/teach_data_1.xsf
+../relax/directory_18/teach_data/teach_data_1.xsf
+../relax/directory_19/teach_data/teach_data_1.xsf

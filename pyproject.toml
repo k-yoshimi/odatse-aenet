@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "odatse-aenet"
+version = "1.0.0"
+description = "AENET solver module for ODAT-SE"
+license = "MPL-2.0"
+
+packages = [
+  { include = "AenetSolver", from = "src" },
+  { include = "ElsesCalculator", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+numpy = ">=1.22"
+ODAT-SE = ">=3"
+
+[tool.poetry.scripts]
+odatse-aenet = "AenetSolver._main:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

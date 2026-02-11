@@ -1,0 +1,21 @@
+#generate.xの実行の出力ファイル
+TRAININGSET N2.train
+
+#教師データの何%をテストデータとするか
+TESTPERCENT 10
+
+#重み最適化のiteration数
+ITERATIONS  3000
+
+TIMING
+
+#重み最適化手法選択
+# (1) online steepest descent
+# (2) BFGS
+# (3) Levenberg-Marquardt
+bfgs
+
+NETWORKS
+# atom   network           hidden
+# types  file-name         layers   nodes:activation
+N        N.5t-5t.ann       2        10:tanh 10:tanh
