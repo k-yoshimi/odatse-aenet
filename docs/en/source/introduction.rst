@@ -7,7 +7,7 @@ What is odatse-aenet
 odatse-aenet is a solver module for integrating the machine learning potential `AENET <http://ann.atomistic.net/>`_ (Atom-centered Neural Network) with
 the `ODAT-SE <https://github.com/issp-center-dev/ODAT-SE>`_ (Open Data Analysis Tool for Science and Engineering) framework.
 
-Using the optimization algorithms provided by ODAT-SE, you can perform parameter searches with machine learning potentials constructed by AENET.
+Using the optimization algorithms provided by ODAT-SE, you can compute energies with machine learning potentials constructed by AENET and search for atomic structure parameters (such as bond distances) that minimize the energy.
 
 Available algorithms
 ~~~~~~~~~~~~~~~~~~~~~~

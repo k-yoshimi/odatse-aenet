@@ -7,7 +7,7 @@ odatse-aenet とは
 odatse-aenet は、機械学習ポテンシャル `AENET <http://ann.atomistic.net/>`_ (Atom-centered Neural Network) を
 `ODAT-SE <https://github.com/issp-center-dev/ODAT-SE>`_ (Open Data Analysis Tool for Science and Engineering) フレームワークと統合するためのソルバーモジュールです。
 
-ODAT-SE が提供する最適化アルゴリズムを用いて、AENET で構築した機械学習ポテンシャルによるパラメータ探索を実行できます。
+ODAT-SE が提供する最適化アルゴリズムを用いて、AENET で構築した機械学習ポテンシャルによるエネルギー計算を行い、エネルギーが最小となる原子構造パラメータ（結合距離など）を探索できます。
 
 利用可能なアルゴリズム
 ~~~~~~~~~~~~~~~~~~~~~~
