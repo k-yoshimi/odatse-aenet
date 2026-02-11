@@ -24,13 +24,12 @@ Package structure
 ~~~~~~~~~~~~~~~~~~
 
 - **AenetSolver**: Executes AENET predict.x as an ODAT-SE solver class to perform energy calculations.
-- **ElsesCalculator**: Wraps the ELSES electronic state calculation code as an ASE FileIOCalculator for use in molecular dynamics simulations.
 
 Developers
 ----------
 
 - **谷田秀哉** (Graduate School of Sustainability Science, Tottori University) --- Initial code development (Master's thesis)
-- **星健夫** (National Institute for Fusion Science) --- ODAT-SE/ELSES co-development, research supervision
+- **星健夫** (National Institute for Fusion Science) --- ODAT-SE co-development, research supervision
 - **吉見一慶** (Institute for Solid State Physics, The University of Tokyo) --- Code organization and packaging
 
 License

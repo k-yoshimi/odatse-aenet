@@ -61,13 +61,13 @@ This is the standard ODAT-SE TOML configuration file.
    remove_work_dir = false                 # Whether to remove the working directory after calculation
 
    [algorithm]
-   name = "pamc"                           # Algorithm to use
+   name = "mapper"                          # Algorithm to use
    label_list = ["z"]
 
    [algorithm.param]
-   min_list = [0.5]
-   max_list = [2.0]
-   unit_list = [0.015]
+   min_list = [0.8]
+   max_list = [1.4]
+   num_list = [101]
 
 solver.config Section
 ~~~~~~~~~~~~~~~~~~~~~
@@ -164,43 +164,3 @@ Direct execution from a script:
 
    python3 src/main.py input.toml
 
-ELSES Calculator
-================
-
-Overview
---------
-
-ElsesCalculator is a wrapper for the ELSES electronic structure calculation code that inherits from
-ASE's (Atomic Simulation Environment) ``FileIOCalculator``. It is used for molecular dynamics simulations.
-
-Features
---------
-
-- Generates XYZ format input files from ASE ``Atoms`` objects
-- Extracts forces from ELSES's ``restart.xml`` and energies from ``Output.txt``
-- Unit conversion: a.u. to eV/Ang (forces), eV/atom to eV (energy)
-
-Unit Conversion
-~~~~~~~~~~~~~~~
-
-ElsesCalculator performs unit conversions using the physical constants from ``ase.units``:
-
-- **Forces**: a.u. to eV/Ang (``ase.units.Hartree / ase.units.Bohr``)
-- **Energy**: eV/atom (Output.txt) to eV (converted to total energy by multiplying by the number of atoms)
-
-Usage Example
--------------
-
-.. code-block:: python
-
-   from ElsesCalculator import ElsesCalculator
-
-   calc = ElsesCalculator(command='elses-xml-generate generate.xml C480.xml ; srun elses config.xml > log.txt')
-   atoms.calc = calc
-   energy = atoms.get_potential_energy()
-
-.. note::
-
-   For backward compatibility, ``from ElsesCalculator import elses`` is also available.
-   Additionally, in ASE 3.x and later, ``atoms.set_calculator(calc)`` is deprecated.
-   Please use ``atoms.calc = calc`` instead.

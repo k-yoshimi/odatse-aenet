@@ -6,10 +6,9 @@
 
 AENET (Atom-centered Neural Network) solver module for [ODAT-SE](https://github.com/issp-center-dev/ODAT-SE) (Open Data Analysis Tool for Science and Engineering).
 
-This package provides two main components:
+This package provides:
 
-- **AenetSolver** --- ODAT-SE solver that drives AENET `predict.x` for parameter optimization via PAMC, replica exchange, Bayesian optimization, and other algorithms.
-- **ElsesCalculator** --- ASE `FileIOCalculator` wrapper for the [ELSES](http://www.elses.jp/) electronic structure code, enabling molecular dynamics simulations through ASE.
+- **AenetSolver** --- ODAT-SE solver that drives AENET `predict.x` for parameter optimization via grid search, Nelder-Mead, Bayesian optimization, replica exchange, and other algorithms.
 
 ## Requirements
 
@@ -18,11 +17,9 @@ This package provides two main components:
 - [ODAT-SE](https://github.com/issp-center-dev/ODAT-SE) >= 3.0
 - [AENET](http://ann.atomistic.net/) (predict.x, generate.x, train.x)
 
-Optional (for tutorials):
+Optional (for training tutorial):
 
-- [ASE](https://wiki.fysik.dtu.dk/ase/) (Atomic Simulation Environment)
 - [Quantum ESPRESSO](https://www.quantum-espresso.org/) (pw.x)
-- [ELSES](http://www.elses.jp/)
 
 ## Installation
 
@@ -37,7 +34,7 @@ After installation, the `odatse-aenet` command becomes available:
 odatse-aenet --version
 ```
 
-See the [documentation](#documentation) for detailed installation instructions including AENET, QE, and ELSES.
+See the [documentation](#documentation) for detailed installation instructions including AENET and QE.
 
 ## Quick Start
 
@@ -58,10 +55,8 @@ mpiexec -np 4 odatse-aenet input.toml
 | Directory | Description | Requirements |
 |-----------|-------------|--------------|
 | `sample/aenet_training/` | AENET training pipeline: structure generation → QE relaxation → fingerprint → training → prediction | QE, AENET |
-| `sample/aenet_pamc/` | N2 dimer optimization using AENET + PAMC | AENET, ODAT-SE |
-| `sample/fullerene_qe_md/` | Fullerene C480 NVT MD with Quantum ESPRESSO | QE, ASE |
-| `sample/fullerene_elses_md/` | Fullerene C480 NVT MD with ELSES | ELSES, ASE |
-| `sample/emt_md/` | Ni bulk NVT MD with EMT potential (no external tools needed) | ASE |
+| `sample/aenet_mapper/` | N2 dimer grid search using AENET + mapper | AENET, ODAT-SE |
+| `sample/aenet_minsearch/` | N2 dimer optimization using AENET + Nelder-Mead | AENET, ODAT-SE |
 
 Each tutorial includes a `run_all.sh` script to execute the full workflow.
 
@@ -72,8 +67,6 @@ src/
   AenetSolver/               # ODAT-SE solver for AENET
     aenet.py                 # Solver class (extends odatse.solver.SolverBase)
     _main.py                 # CLI entry point
-  ElsesCalculator/           # ASE calculator for ELSES
-    elses.py                 # FileIOCalculator wrapper
 sample/                      # Tutorial samples
 docs/
   ja/                        # Japanese documentation
@@ -98,7 +91,7 @@ sh make.sh       # Build both ja/en HTML docs
 ## Developers
 
 - **谷田秀哉** (Shuya Tanida), Tottori University --- Initial code development
-- **星健夫** (Takeo Hoshi), National Institute for Fusion Science --- ODAT-SE/ELSES co-development, research supervision
+- **星健夫** (Takeo Hoshi), National Institute for Fusion Science --- ODAT-SE co-development, research supervision
 - **吉見一慶** (Kazuyoshi Yoshimi), ISSP, The University of Tokyo --- Code organization and packaging
 
 ## Citation

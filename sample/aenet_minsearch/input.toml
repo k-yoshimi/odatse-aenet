@@ -6,26 +6,23 @@ output_dir = "output"
 name = "aenet"
 
 [solver.config]
-aenet_exec_file = "/Users/k-yoshimi/program/aenet/bin/predict.x"
+aenet_exec_file = "predict.x"
 aenet_ann_potential = "N.5t-5t.ann"
 
 [solver.param]
 string_list = ["value_01"]
 
 [algorithm]
-name = "pamc"
+name = "minsearch"
 label_list = ["z"]
 
 [algorithm.param]
 min_list = [0.5]
 max_list = [2.0]
-step_list = [0.015]
+initial_list = [1.25]
 
-[algorithm.pamc]
-numsteps_annealing = 40
-Tnum = 41
-Tmin = 1
-Tmax = 1000
-nreplica_per_proc = 10
-Tlogspace = true
-resampling_interval = 2
+[algorithm.minimize]
+initial_scale_list = [0.25]
+xatol = 0.0001
+fatol = 0.0001
+maxiter = 100

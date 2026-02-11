@@ -67,6 +67,10 @@ def load_weights(output_dirname, num_procs, rep_per_pro, Tnum, n_search_val, idn
             temp_nrep = temp_txt_datas.shape[0]
             txt_datas[j, counter_eachT[j]:counter_eachT[j] + temp_nrep, 0] = i
             txt_datas[j, counter_eachT[j]:counter_eachT[j] + temp_nrep, 1:] = temp_txt_datas
+            # Convert log_weight (column 3) to actual weight
+            start = counter_eachT[j]
+            end = start + temp_nrep
+            txt_datas[j, start:end, 4] = np.exp(txt_datas[j, start:end, 4])
             counter_eachT[j] += temp_nrep
 
     return T, txt_datas
@@ -147,7 +151,8 @@ if __name__ == "__main__":
 
     output_dirname = toml_dir["base"].get("output_dir", ".")
     n_search_val = toml_dir["base"]["dimension"]
-    rep_per_pro = toml_dir["algorithm"]["pamc"]["replica_per_prop"]
+    pamc_conf = toml_dir["algorithm"]["pamc"]
+    rep_per_pro = pamc_conf.get("nreplica_per_proc", pamc_conf.get("replica_per_prop", 1))
     Tnum = int(args.specific_Tnum) if args.specific_Tnum else toml_dir["algorithm"]["pamc"]["Tnum"]
     num_procs = len([
         f for f in os.listdir(output_dirname)

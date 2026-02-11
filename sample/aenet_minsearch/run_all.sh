@@ -1,24 +1,18 @@
 #!/bin/bash
 #==========================================
-# AENET PAMC Tutorial - Full Execution Script
+# AENET Minsearch Tutorial - Full Execution Script
 #
-# Requirements: ODAT-SE (odatse-aenet), AENET (predict.x),
-#               MPI, matplotlib
+# Requirements: ODAT-SE (odatse-aenet), AENET (predict.x)
 #
 # Before running, ensure:
 #   - predict.x is in PATH
 #   - N.5t-5t.ann is in this directory
 #   - template.xsf is in this directory
-#
-# Configuration: Adjust variables below for your environment.
 #==========================================
 set -eu
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
-
-# --- Configuration ---
-NPROCS=2   # Number of MPI processes for PAMC
 
 # Auto-detect odatse-aenet: check PATH, then user site-packages bin
 ODATSE_CMD="odatse-aenet"
@@ -32,7 +26,7 @@ if ! command -v odatse-aenet > /dev/null 2>&1; then
     fi
 fi
 
-echo "=== AENET PAMC Tutorial ==="
+echo "=== AENET Minsearch Tutorial ==="
 echo "Working directory: $(pwd)"
 echo "odatse-aenet: ${ODATSE_CMD}"
 echo ""
@@ -61,43 +55,29 @@ for f in N.5t-5t.ann template.xsf input.toml predict.in; do
 done
 
 #------------------------------------------
-# Step 1: Run PAMC optimization
+# Step 1: Run minsearch (Nelder-Mead optimization)
 #------------------------------------------
-echo "--- Step 1: Run PAMC ---"
+echo "--- Step 1: Run minsearch ---"
 export PYTHONUNBUFFERED=1
+time ${ODATSE_CMD} input.toml
+echo ""
 
-if command -v mpiexec > /dev/null 2>&1; then
-    echo "Running with MPI (${NPROCS} processes)..."
-    export OMPI_MCA_rmaps_base_oversubscribe=true
-    time mpiexec -np ${NPROCS} ${ODATSE_CMD} input.toml
-else
-    echo "Warning: mpiexec not found. Running in serial mode."
-    time ${ODATSE_CMD} input.toml
+#------------------------------------------
+# Step 2: Show results
+#------------------------------------------
+echo "--- Step 2: Optimization results ---"
+if [ -f "output/res.txt" ]; then
+    echo "=== res.txt ==="
+    cat output/res.txt
+    echo ""
 fi
-echo ""
-
-#------------------------------------------
-# Step 2: Summarize results
-#------------------------------------------
-echo "--- Step 2: Summarize results ---"
-python3 summarize_results.py -i input.toml -d pamc --idnum 0
-echo ""
-
-#------------------------------------------
-# Step 3: Plot histograms
-#------------------------------------------
-echo "--- Step 3: Plot histograms ---"
-NORM_DIR=$(ls -d *_normwgt_eachT 2>/dev/null | head -1)
-if [ -n "$NORM_DIR" ]; then
-    python3 batch_plot.py plot_histogram.py "$NORM_DIR" --variable x1
-else
-    echo "Warning: No normalized weight directory found. Skipping plot."
+if [ -f "output/SimplexData.txt" ]; then
+    echo "=== SimplexData.txt (last 5 lines) ==="
+    tail -5 output/SimplexData.txt
+    echo ""
 fi
-echo ""
 
 echo "=== Done ==="
 echo "Outputs:"
-echo "  output/              - PAMC output directories"
-echo "  output/best_result.txt - Best optimization result"
-echo "  *_eachT/             - Per-temperature summary files"
-echo "  1dhist/              - Histogram plots"
+echo "  output/res.txt         - Optimization result (optimal parameters)"
+echo "  output/SimplexData.txt - Simplex iteration history"

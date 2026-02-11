@@ -61,13 +61,13 @@ ODAT-SE 標準の TOML 設定ファイルです。
    remove_work_dir = false                 # 計算後に作業ディレクトリを削除するか
 
    [algorithm]
-   name = "pamc"                           # 使用するアルゴリズム
+   name = "mapper"                          # 使用するアルゴリズム
    label_list = ["z"]
 
    [algorithm.param]
-   min_list = [0.5]
-   max_list = [2.0]
-   unit_list = [0.015]
+   min_list = [0.8]
+   max_list = [1.4]
+   num_list = [101]
 
 solver.config セクション
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -164,43 +164,3 @@ MPI 並列実行:
 
    python3 src/main.py input.toml
 
-ELSES Calculator
-================
-
-概要
-----
-
-ElsesCalculator は、ASE (Atomic Simulation Environment) の ``FileIOCalculator`` を継承した
-ELSES 電子状態計算コードのラッパーです。分子動力学シミュレーションに利用します。
-
-機能
-----
-
-- ASE の ``Atoms`` オブジェクトから XYZ 形式の入力ファイルを生成
-- ELSES の ``restart.xml`` から力を、``Output.txt`` からエネルギーを抽出
-- 単位変換: a.u. → eV/Å（力）、eV/atom → eV（エネルギー）
-
-単位変換
-~~~~~~~~
-
-ElsesCalculator は ``ase.units`` の物理定数を利用して単位変換を行います:
-
-- **力**: a.u. → eV/Å（``ase.units.Hartree / ase.units.Bohr``）
-- **エネルギー**: eV/atom（Output.txt）→ eV（原子数を掛けて総エネルギーに変換）
-
-使用例
-------
-
-.. code-block:: python
-
-   from ElsesCalculator import ElsesCalculator
-
-   calc = ElsesCalculator(command='elses-xml-generate generate.xml C480.xml ; srun elses config.xml > log.txt')
-   atoms.calc = calc
-   energy = atoms.get_potential_energy()
-
-.. note::
-
-   後方互換性のため ``from ElsesCalculator import elses`` も利用可能です。
-   また、ASE 3.x 以降では ``atoms.set_calculator(calc)`` は非推奨です。
-   ``atoms.calc = calc`` を使用してください。

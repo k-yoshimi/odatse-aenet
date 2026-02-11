@@ -9,9 +9,7 @@ odatse-aenet Manual
    install
    solver
    tutorial_training
-   tutorial_pamc
-   tutorial_fullerene_qe
-   tutorial_fullerene_elses
-   tutorial_emt_md
+   tutorial_mapper
+   tutorial_minsearch
    acknowledgement
    contact

@@ -9,11 +9,9 @@ Requirements
 - `ODAT-SE <https://github.com/issp-center-dev/ODAT-SE>`_ >= 3.0
 - `AENET <http://ann.atomistic.net/>`_ (predict.x, generate.x, train.x)
 
-The following are also required depending on the sample:
+The following is also required for the training tutorial:
 
-- `ASE <https://wiki.fysik.dtu.dk/ase/>`_ (Atomic Simulation Environment)
 - `Quantum ESPRESSO <https://www.quantum-espresso.org/>`_ (pw.x)
-- `ELSES <https://www.elses.jp/>`_
 
 Installing ODAT-SE
 -----------------------
@@ -128,30 +126,10 @@ Verification:
 
    For more details, see the `AENET official website <http://ann.atomistic.net/>`_.
 
-Installing ASE
--------------------
-
-ASE (Atomic Simulation Environment) is used for molecular dynamics simulations
-and interfacing with various computational engines.
-
-.. code-block:: bash
-
-   pip3 install ase
-
-Verifying the installation:
-
-.. code-block:: bash
-
-   python3 -c "import ase; print(ase.__version__)"
-
-.. note::
-
-   For more details, see the `ASE official documentation <https://wiki.fysik.dtu.dk/ase/>`_.
-
 Installing Quantum ESPRESSO
 ---------------------------------
 
-Quantum ESPRESSO is a first-principles calculation engine used in the fullerene MD tutorial.
+Quantum ESPRESSO is a first-principles calculation engine used for structure relaxation in the training tutorial.
 
 Prerequisites (macOS)
 ~~~~~~~~~~~~~~~~~~~~~
@@ -225,16 +203,6 @@ Verification:
      `SSSP library <https://www.materialscloud.org/discover/sssp/>`_
      and other sources.
    - For more details, see the `Quantum ESPRESSO official website <https://www.quantum-espresso.org/>`_.
-
-Installing ELSES
----------------------
-
-ELSES is a large-scale electronic structure calculation program, used in the fullerene MD tutorial (ELSES version).
-
-The ELSES source code is provided to members of the `ELSES Consortium <http://www.elses.jp/>`_.
-Participation in the consortium is required to use it.
-
-For more details, see the `ELSES official website <http://www.elses.jp/>`_.
 
 Installing odatse-aenet
 ----------------------------

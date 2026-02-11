@@ -1,0 +1,22 @@
+[base]
+dimension = 1
+output_dir = "output"
+
+[solver]
+name = "aenet"
+
+[solver.config]
+aenet_exec_file = "predict.x"
+aenet_ann_potential = "N.5t-5t.ann"
+
+[solver.param]
+string_list = ["value_01"]
+
+[algorithm]
+name = "mapper"
+label_list = ["z"]
+
+[algorithm.param]
+min_list = [0.8]
+max_list = [1.4]
+num_list = [101]

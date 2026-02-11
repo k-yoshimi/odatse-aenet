@@ -9,11 +9,9 @@
 - `ODAT-SE <https://github.com/issp-center-dev/ODAT-SE>`_ >= 3.0
 - `AENET <http://ann.atomistic.net/>`_ (predict.x, generate.x, train.x)
 
-サンプルによっては以下も必要です:
+トレーニングチュートリアルでは以下も必要です:
 
-- `ASE <https://wiki.fysik.dtu.dk/ase/>`_ (Atomic Simulation Environment)
 - `Quantum ESPRESSO <https://www.quantum-espresso.org/>`_ (pw.x)
-- `ELSES <https://www.elses.jp/>`_
 
 ODAT-SE のインストール
 -----------------------
@@ -128,30 +126,10 @@ AENET 本体のビルド
 
    詳細は `AENET 公式サイト <http://ann.atomistic.net/>`_ を参照してください。
 
-ASE のインストール
--------------------
-
-ASE（Atomic Simulation Environment）は分子動力学シミュレーションや
-各種計算エンジンとの連携に使用します。
-
-.. code-block:: bash
-
-   pip3 install ase
-
-インストール確認:
-
-.. code-block:: bash
-
-   python3 -c "import ase; print(ase.__version__)"
-
-.. note::
-
-   詳細は `ASE 公式ドキュメント <https://wiki.fysik.dtu.dk/ase/>`_ を参照してください。
-
 Quantum ESPRESSO のインストール
 ---------------------------------
 
-Quantum ESPRESSO は第一原理計算エンジンで、フラーレンMDチュートリアルで使用します。
+Quantum ESPRESSO は第一原理計算エンジンで、トレーニングチュートリアルの構造緩和に使用します。
 
 前準備（macOS）
 ~~~~~~~~~~~~~~~
@@ -224,16 +202,6 @@ pw.x のみをビルドする場合:
      `SSSP ライブラリ <https://www.materialscloud.org/discover/sssp/>`_
      などから取得できます。
    - 詳細は `Quantum ESPRESSO 公式サイト <https://www.quantum-espresso.org/>`_ を参照してください。
-
-ELSES のインストール
----------------------
-
-ELSES は大規模電子状態計算プログラムで、フラーレンMDチュートリアル（ELSES版）で使用します。
-
-ELSES のソースコードは `ELSES コンソーシアム <http://www.elses.jp/>`_ のメンバーに提供されています。
-利用するには、コンソーシアムへの参加が必要です。
-
-詳細は `ELSES 公式サイト <http://www.elses.jp/>`_ を参照してください。
 
 odatse-aenet のインストール
 ----------------------------

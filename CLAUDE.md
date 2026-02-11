@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-ODAT-SE AENET solver module: integrates AENET machine learning potentials with the ODAT-SE (Open Data Analysis Tool for Science and Engineering) framework for parameter optimization. Also includes an ASE calculator wrapper for ELSES.
+ODAT-SE AENET solver module: integrates AENET machine learning potentials with the ODAT-SE (Open Data Analysis Tool for Science and Engineering) framework for parameter optimization.
 
 ODAT-SE source: `/Users/k-yoshimi/Dropbox/PycharmProjects/ODAT-SE`
 Solver-template reference: `odat-se-gallery/data/tutorial/solver-template/`
@@ -18,14 +18,10 @@ src/                          # Source code
     __init__.py
     _main.py                  # odatse.initialize() + algorithm dispatch
     aenet.py                  # Solver(odatse.solver.SolverBase)
-  ElsesCalculator/            # ASE FileIOCalculator for ELSES
-    __init__.py
-    elses.py
 sample/                       # Tutorial examples
-  aenet_pamc/                 # N2 dimer PAMC optimization
   aenet_training/             # AENET training pipeline (generate/train/relax/predict)
-  fullerene_qe_md/            # Fullerene MD with Quantum ESPRESSO
-  fullerene_elses_md/         # Fullerene MD with ELSES
+  aenet_mapper/               # N2 dimer grid search (mapper)
+  aenet_minsearch/            # N2 dimer optimization (Nelder-Mead)
 ```
 
 ## Install and Run
@@ -64,9 +60,8 @@ result = alg.main()
 ## Key Dependencies
 
 - `odatse` (ODAT-SE >= 3.0) -- optimization framework
-- `ase` -- atomic simulation environment (for MD samples and ELSES calculator)
 - `numpy` -- numerical computation
-- External: `predict.x` (AENET), `pw.x` (Quantum ESPRESSO), ELSES
+- External: `predict.x` (AENET), `pw.x` (Quantum ESPRESSO, for training)
 
 ## Configuration
 
