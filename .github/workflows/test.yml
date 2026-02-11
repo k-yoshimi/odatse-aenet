@@ -21,6 +21,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: Install MPI library
+        run: sudo apt-get update && sudo apt-get install -y libopenmpi-dev
+
       - name: Install dependencies
         run: |
           pip install --upgrade pip
