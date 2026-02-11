@@ -6,7 +6,6 @@ license = "MPL-2.0"
 
 packages = [
   { include = "AenetSolver", from = "src" },
-  { include = "ElsesCalculator", from = "src" },
 ]
 
 [tool.poetry.dependencies]
